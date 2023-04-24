@@ -1,5 +1,6 @@
 package de.neuefische.model;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class StudentDB {
@@ -7,8 +8,23 @@ public class StudentDB {
         private Student[] database;
     //Methods
         public Student[] getAllStudents(){
+               // Arrays.sort(this.database);
                 return this.database;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            StudentDB studentDB = (StudentDB) o;
+            return Arrays.equals(getDatabase(), studentDB.getDatabase());
+        }
+
+        @Override
+        public int hashCode() {
+            return Arrays.hashCode(getDatabase());
+        }
+
     //Constructor
         public StudentDB(Student[] database) {
             this.database = database;
