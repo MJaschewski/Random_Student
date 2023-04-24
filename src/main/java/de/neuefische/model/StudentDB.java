@@ -1,4 +1,5 @@
 package de.neuefische.model;
+import java.lang.Math;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -8,6 +9,14 @@ public class StudentDB {
         private Student[] database;
     //Methods
 
+        public Student randomStudent() {
+            int max = this.database.length - 1;
+            int min = 0;
+            int range = max - min + 1;
+            int rand = (int)(Math.random() * range) + min;
+            return this.database[rand];
+        }
+
         @Override
         public String toString() {
             return "StudentDB{" +
@@ -15,7 +24,7 @@ public class StudentDB {
                     '}';
         }
 
-    public Student[] getAllStudents(){
+        public Student[] getAllStudents(){
                // Arrays.sort(this.database);
                 return this.database;
         }
