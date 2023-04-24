@@ -7,6 +7,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudentDBTest {
 
     @Test
+    void toString_Test(){
+        //given
+        Student tim = new Student("Tim",1001);
+        Student paul = new Student("Paul",1002);
+        Student alex = new Student("Alex", 1003);
+        Student[] database = {tim,paul,alex};
+        StudentDB databaseTest = new StudentDB(database);
+
+        //then
+        String actual = databaseTest.toString();
+
+        //
+        assertEquals(actual, "StudentDB{database=[Student{name='Tim', id=1001}, Student{name='Paul', id=1002}, Student{name='Alex', id=1003}]}");
+    }
+    @Test
     void getAllStudents_Equal_Databases() {
         //Given
         Student tim = new Student("Tim",1001);

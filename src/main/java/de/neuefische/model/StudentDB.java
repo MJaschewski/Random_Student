@@ -7,7 +7,15 @@ public class StudentDB {
     //Properties
         private Student[] database;
     //Methods
-        public Student[] getAllStudents(){
+
+        @Override
+        public String toString() {
+            return "StudentDB{" +
+                    "database=" + Arrays.toString(database) +
+                    '}';
+        }
+
+    public Student[] getAllStudents(){
                // Arrays.sort(this.database);
                 return this.database;
         }
