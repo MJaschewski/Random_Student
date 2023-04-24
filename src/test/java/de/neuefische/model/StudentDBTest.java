@@ -81,9 +81,10 @@ class StudentDBTest {
         Student[] actualOneDifferent = databaseTestOneDifferent.getAllStudents();
 
         //Then
-        for (int i = 0; i < actual.length; i++) {
-            assertNotEquals(actual[i], actualOneDifferent[i]);
+        for (int i = 0; i < 2; i++) {
+            assertEquals(actual[i], actualOneDifferent[i]);
         }
+        assertNotEquals(actual[2],actualOneDifferent[2]);
 
     }
     @Test
@@ -104,9 +105,12 @@ class StudentDBTest {
         Student[] actualDifferentOrder = databaseTestChangedOrder.getAllStudents();
 
         //Then
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(actual[i], actualDifferentOrder[i]);
+        for (int i = 0; i < actual.length - 1; i++) {
+            assertNotEquals(actual[i], actualDifferentOrder[i]);
         }
+        assertEquals(actual[0],actualDifferentOrder[2]);
+        assertEquals(actual[1],actualDifferentOrder[0]);
+        assertEquals(actual[2],actualDifferentOrder[1]);
 
     }
 }
