@@ -7,7 +7,7 @@ public class Student {
         private String name;
         private int id;
     //Methods
-        
+
         @Override
         public String toString() {
             return "Student{" +
