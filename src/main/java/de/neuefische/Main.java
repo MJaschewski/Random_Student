@@ -5,6 +5,16 @@ import de.neuefische.model.StudentDB;
 
 public class Main {
     public static void main(String[] args) {
+        //given
+        Student tim = new Student("Tim",1001);
+        Student paul = new Student("Paul",1002);
+        Student alex = new Student("Alex", 1003);
+        Student[] database = {tim,paul,alex};
+        StudentDB databaseTest = new StudentDB(database);
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println(databaseTest.randomStudent());
+        }
 
     }
 }
