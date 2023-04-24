@@ -5,6 +5,10 @@ import java.util.Objects;
 public class StudentDB {
     //Properties
         private Student[] database;
+    //Methods
+        public Student[] getAllStudents(){
+                return this.database;
+        }
     //Constructor
         public StudentDB(Student[] database) {
             this.database = database;
@@ -19,6 +23,7 @@ public class StudentDB {
         }
 
         public void setDatabase(Student[] database) {
+
             this.database = database;
         }
 }
