@@ -2,6 +2,8 @@ package de.neuefische.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDBTest {
@@ -19,35 +21,44 @@ class StudentDBTest {
         String actual = databaseTest.toString();
 
         //
-        assertEquals(actual, "StudentDB{database=[Student{name='Tim', id=1001}, Student{name='Paul', id=1002}, Student{name='Alex', id=1003}]}");
+        assertEquals( "StudentDB{database=[Student{name='Tim', id=1001}, Student{name='Paul', id=1002}, Student{name='Alex', id=1003}]}",actual);
     }
     @Test
-    void getAllStudents_Equal_Databases() {
+    void getAllStudents_Equal(){
         //Given
         Student tim = new Student("Tim",1001);
         Student paul = new Student("Paul",1002);
         Student alex = new Student("Alex", 1003);
 
-        Student dieter = new Student("Fritz",1004);
-        Student klaus = new Student("Klaus",1005);
-        Student bob = new Student("Bob",1006);
-
         Student[] database = {tim,paul,alex};
-        Student[] databaseEqual = {tim,paul,alex};
-
-
         StudentDB databaseTest = new StudentDB(database);
-        StudentDB databaseTestEqual = new StudentDB(databaseEqual);
-
 
         //When
         Student[] actual = databaseTest.getAllStudents();
-        Student[] actualEqual = databaseTestEqual.getAllStudents();
 
         //Then
         for (int i = 0; i < actual.length; i++) {
-            assertEquals(actual[i], actualEqual[i]);
+            assertEquals(database[i],actual[i]);
         }
+    }
+
+    @Test
+    void getAllStudents_Equal_Different_Order(){
+        //Given
+        Student tim = new Student("Tim",1001);
+        Student paul = new Student("Paul",1002);
+        Student alex = new Student("Alex", 1003);
+
+        Student[] database = {tim,paul,alex};
+        Student[] databaseShuffle = {paul,alex,tim};
+
+        StudentDB databaseTest = new StudentDB(databaseShuffle);
+
+        //When
+        Student[] actual = databaseTest.getAllStudents();
+
+        //Then
+        assertArrayEquals(database,actual);
     }
     @Test
     void getAllStudents_AllDifferent(){
@@ -61,71 +72,17 @@ class StudentDBTest {
         Student bob = new Student("Bob",1006);
 
         Student[] database = {tim,paul,alex};
-        Student[] databaseAADifferent = {klaus,bob,dieter};
-
         StudentDB databaseTest = new StudentDB(database);
-        StudentDB databaseTestAllDifferent = new StudentDB(databaseAADifferent);
-
-        //Then
-        Student[] actual = databaseTest.getAllStudents();
-        Student[] actualAllDifferent = databaseTestAllDifferent.getAllStudents();
-
-        //Then
-        for (int i = 0; i < actual.length; i++) {
-            assertNotEquals(actual[i], actualAllDifferent[i]);
-        }
-    }
-
-    @Test
-    void  getAllStudents_OneDifferent(){
-        //Given
-        Student tim = new Student("Tim",1001);
-        Student paul = new Student("Paul",1002);
-        Student alex = new Student("Alex", 1003);
-
-        Student dieter = new Student("Fritz",1004);
-
-        Student[] database = {tim,paul,alex};
-        Student[] databaseOneDifferent = {tim,paul,dieter};
-
-        StudentDB databaseTest = new StudentDB(database);
-        StudentDB databaseTestOneDifferent = new StudentDB(databaseOneDifferent);
+        Student[] databaseAllDifferent = {klaus,bob,dieter};
 
         //When
         Student[] actual = databaseTest.getAllStudents();
-        Student[] actualOneDifferent = databaseTestOneDifferent.getAllStudents();
-
-        //Then
-        for (int i = 0; i < 2; i++) {
-            assertEquals(actual[i], actualOneDifferent[i]);
-        }
-        assertNotEquals(actual[2],actualOneDifferent[2]);
-
-    }
-    @Test
-    void getAllStudents_Equals_DifferentOrder_Databases() {
-        //Given
-        Student tim = new Student("Tim",1001);
-        Student paul = new Student("Paul",1002);
-        Student alex = new Student("Alex", 1003);
-
-        Student[] database = {tim,paul,alex};
-        Student[] databaseChangedOrder = {paul,alex,tim};
-
-        StudentDB databaseTest = new StudentDB(database);
-        StudentDB databaseTestChangedOrder = new StudentDB(databaseChangedOrder);
-
-        //When
-        Student[] actual = databaseTest.getAllStudents();
-        Student[] actualDifferentOrder = databaseTestChangedOrder.getAllStudents();
 
         //Then
         for (int i = 0; i < actual.length - 1; i++) {
-            assertNotEquals(actual[i], actualDifferentOrder[i]);
+            assertNotEquals(actual[i], databaseAllDifferent[i]);
         }
-        assertEquals(actual[0],actualDifferentOrder[2]);
-        assertEquals(actual[1],actualDifferentOrder[0]);
-        assertEquals(actual[2],actualDifferentOrder[1]);
 
     }
+
 }
