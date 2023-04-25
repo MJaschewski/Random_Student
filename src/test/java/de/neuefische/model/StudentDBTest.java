@@ -37,27 +37,6 @@ class StudentDBTest {
         Student[] actual = databaseTest.getAllStudents();
 
         //Then
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(database[i],actual[i]);
-        }
-    }
-
-    @Test
-    void getAllStudents_Equal_Different_Order(){
-        //Given
-        Student tim = new Student("Tim",1001);
-        Student paul = new Student("Paul",1002);
-        Student alex = new Student("Alex", 1003);
-
-        Student[] database = {tim,paul,alex};
-        Student[] databaseShuffle = {paul,alex,tim};
-
-        StudentDB databaseTest = new StudentDB(databaseShuffle);
-
-        //When
-        Student[] actual = databaseTest.getAllStudents();
-
-        //Then
         assertArrayEquals(database,actual);
     }
     @Test

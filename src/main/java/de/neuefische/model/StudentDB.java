@@ -25,25 +25,7 @@ public class StudentDB {
         }
 
         public Student[] getAllStudents(){
-                int length = this.database.length;
-                Student[] copy = this.database.clone();
-                Student[] ordered = new Student[length];
-
-                int pChange = 0;
-                int idSmall = copy[0].getId();
-
-                for (int i = 0; i < length - 1; i++) {
-                    for (int j = 0; j < length -1 ; j++) {
-
-                        if(copy[j].getId() < idSmall){
-                            idSmall = copy[j].getId();
-                            pChange = j;
-                        }
-                    }
-                    ordered[i] = copy[pChange];
-                    copy[pChange] = new Student("Null",0000);
-                }
-                return ordered;
+                return database;
         }
 
         @Override
