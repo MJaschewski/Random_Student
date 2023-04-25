@@ -11,6 +11,16 @@ public class BiologyStudent extends Student implements Citizen{
     public BiologyStudent() {
     }
 
+    @Override
+    public void setIQValue(int IQValue) {
+
+    }
+
+    @Override
+    public int getIQValue() {
+        return 0;
+    }
+
     public BiologyStudent(String name, int id, boolean learnBook) {
         super(name, id);
         this.learnBook = learnBook;

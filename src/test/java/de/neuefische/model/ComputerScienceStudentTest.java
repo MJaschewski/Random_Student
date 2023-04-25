@@ -33,4 +33,18 @@ class ComputerScienceStudentTest {
         //then
         assertEquals(testID,actual);
     }
+
+    @Test
+    void getIQValue(){
+        //Given
+        int IQ = 103;
+        ComputerScienceStudent tom  = new ComputerScienceStudent();
+        tom.setIQValue(IQ);
+
+        //when
+        int actual = tom.getIQValue();
+
+        //then
+        assertEquals(IQ,actual);
+    }
 }

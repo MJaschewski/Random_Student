@@ -7,12 +7,23 @@ public class ComputerScienceStudent extends Student implements Citizen{
 
     private String Address;
 
+    private int IQValue;
+
     public ComputerScienceStudent() {
     }
 
     public ComputerScienceStudent(String name, int id, int getProgramingIQ) {
         super(name, id);
         this.getProgramingIQ = getProgramingIQ;
+    }
+
+    @Override
+    public void setIQValue(int IQValue) {
+        this.IQValue = IQValue;
+    }
+    @Override
+    public int getIQValue(){
+        return this.IQValue;
     }
 
     @Override

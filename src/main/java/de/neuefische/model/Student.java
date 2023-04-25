@@ -2,11 +2,13 @@ package de.neuefische.model;
 
 import java.util.Objects;
 
-public class Student {
+public abstract class Student {
     //properties
         private String name;
         private int id;
     //Methods
+        public abstract void setIQValue(int IQValue);
+        public abstract int getIQValue();
 
         @Override
         public String toString() {

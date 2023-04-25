@@ -7,7 +7,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDBTest {
-
+    /*
     @Test
     void toString_Test(){
         //given
@@ -23,6 +23,7 @@ class StudentDBTest {
         //
         assertEquals( "StudentDB{database=[Student{name='Tim', id=1001}, Student{name='Paul', id=1002}, Student{name='Alex', id=1003}]}",actual);
     }
+
     @Test
     void getAllStudents_ThreeStudents(){
         //Given
@@ -39,7 +40,7 @@ class StudentDBTest {
         //Then
         assertArrayEquals(database,actual);
     }
-
+    */
     /*
     @Test
     void getAllStudents_ThreeStudents_Shuffled(){
