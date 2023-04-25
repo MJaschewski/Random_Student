@@ -11,6 +11,13 @@ public class BiologyStudent extends Student{
         this.learnBook = learnBook;
     }
 
+    @Override
+    public String toString() {
+        return "BiologyStudent{" +
+                "learnBook=" + learnBook +
+                "} " + super.toString();
+    }
+
     public boolean isLearnBook() {
         return learnBook;
     }
