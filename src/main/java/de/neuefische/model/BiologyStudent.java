@@ -1,7 +1,12 @@
 package de.neuefische.model;
 
-public class BiologyStudent extends Student{
+public class BiologyStudent extends Student implements Citizen{
     private boolean learnBook;
+
+    private int IdentityCardNumber;
+
+    private String Address;
+
 
     public BiologyStudent() {
     }
@@ -9,6 +14,13 @@ public class BiologyStudent extends Student{
     public BiologyStudent(String name, int id, boolean learnBook) {
         super(name, id);
         this.learnBook = learnBook;
+    }
+
+    void setAddress(String Address){
+        this.Address = Address;
+    }
+    void setIdentityCardNumber(int IdentityCardNumber){
+        this.IdentityCardNumber = IdentityCardNumber;
     }
 
     @Override
@@ -24,5 +36,15 @@ public class BiologyStudent extends Student{
 
     public void setLearnBook(boolean learnBook) {
         this.learnBook = learnBook;
+    }
+
+    @Override
+    public String getAddress() {
+        return Address;
+    }
+
+    @Override
+    public int getIdentityCardNumber() {
+        return IdentityCardNumber;
     }
 }

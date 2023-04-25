@@ -1,7 +1,11 @@
 package de.neuefische.model;
 
-public class ComputerScienceStudent extends Student {
+public class ComputerScienceStudent extends Student implements Citizen{
     private int getProgramingIQ;
+
+    private int IdentityCardNumber;
+
+    private String Address;
 
     public ComputerScienceStudent() {
     }
@@ -25,5 +29,22 @@ public class ComputerScienceStudent extends Student {
 
     public void setGetProgramingIQ(int getProgramingIQ) {
         this.getProgramingIQ = getProgramingIQ;
+    }
+
+    void setAddress(String Address){
+        this.Address = Address;
+    }
+    void setIdentityCardNumber(int IdentityCardNumber){
+        this.IdentityCardNumber = IdentityCardNumber;
+    }
+
+    @Override
+    public String getAddress() {
+        return Address;
+    }
+
+    @Override
+    public int getIdentityCardNumber() {
+        return IdentityCardNumber;
     }
 }
