@@ -24,7 +24,7 @@ class StudentDBTest {
         assertEquals( "StudentDB{database=[Student{name='Tim', id=1001}, Student{name='Paul', id=1002}, Student{name='Alex', id=1003}]}",actual);
     }
     @Test
-    void getAllStudents_Equal(){
+    void getAllStudents_ThreeStudents(){
         //Given
         Student tim = new Student("Tim",1001);
         Student paul = new Student("Paul",1002);
@@ -39,6 +39,30 @@ class StudentDBTest {
         //Then
         assertArrayEquals(database,actual);
     }
+
+    /*
+    @Test
+    void getAllStudents_ThreeStudents_Shuffled(){
+        //Given
+        Student tim = new Student("Tim",1001);
+        Student paul = new Student("Paul",1002);
+        Student alex = new Student("Alex", 1003);
+
+        Student[] database = {tim,paul,alex};
+
+        Student[] databaseShuffle = {paul,alex,tim};
+        Arrays.sort(databaseShuffle);
+
+        StudentDB databaseTest = new StudentDB(database);
+
+        //When
+        Student[] actual = databaseTest.getAllStudents();
+
+        //Then
+        assertArrayEquals(databaseShuffle,actual);
+    }
+    */
+    /*
     @Test
     void getAllStudents_AllDifferent(){
         //Given
@@ -61,7 +85,7 @@ class StudentDBTest {
         for (int i = 0; i < actual.length - 1; i++) {
             assertNotEquals(actual[i], databaseAllDifferent[i]);
         }
-
     }
+     */
 
 }

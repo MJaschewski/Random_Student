@@ -10,6 +10,11 @@ public class StudentDB {
     //Methods
 
         public Student randomStudent() {
+            //"This" not needed. Explicit call
+            //Alternative:
+            //Import java.util.random
+            // Random rng = new Random();
+            // rng.nextInt(5); Int between 0 and 4
             int max = this.database.length - 1;
             int min = 0;
             int range = max - min + 1;
