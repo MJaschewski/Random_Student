@@ -5,6 +5,8 @@ import de.neuefische.model.ComputerScienceStudent;
 import de.neuefische.model.Student;
 import de.neuefische.model.StudentDB;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         Student tim = new BiologyStudent("Tim","1001",true);
@@ -17,8 +19,7 @@ public class Main {
         Student[] database = {tim,paul,alex,paul,chris};
         StudentDB databaseTest = new StudentDB(database);
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(databaseTest.randomStudent());
-        }
+        System.out.println(Arrays.toString(databaseTest.getAllStudents()));
+
     }
 }

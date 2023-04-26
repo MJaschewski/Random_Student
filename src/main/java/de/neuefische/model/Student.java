@@ -10,26 +10,31 @@ public abstract class Student {
         public abstract void setIQValue(int IQValue);
         public abstract int getIQValue();
 
-        @Override
-        public String toString() {
-            return "Student{" +
-                    "name='" + name + '\'' +
-                    ", id=" + id +
-                    '}';
-        }
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Student student = (Student) o;
-            return getId() == student.getId() && Objects.equals(getName(), student.getName());
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(getName(), getId());
-        }
+        Student student = (Student) o;
+
+        if (getName() != null ? !getName().equals(student.getName()) : student.getName() != null) return false;
+        return getId() != null ? getId().equals(student.getId()) : student.getId() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getId() != null ? getId().hashCode() : 0);
+        return result;
+    }
 
     //Constructor
         public Student() {

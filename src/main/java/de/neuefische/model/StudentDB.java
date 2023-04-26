@@ -7,7 +7,7 @@ public class StudentDB {
     //Properties
         private Map<String,Student> dataMap = new HashMap<>();
     //Methods
-        public Student findById(int id) throws NoSuchElementException{
+        public Student findById(String id) throws NoSuchElementException{
             Student foundStudent = this.dataMap.get(id);
             if (foundStudent == null){
                 System.out.println("No student with this ID found");
@@ -38,24 +38,24 @@ public class StudentDB {
                     '}';
         }
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-            StudentDB studentDB = (StudentDB) o;
+        StudentDB studentDB = (StudentDB) o;
 
-            return Objects.equals(dataMap, studentDB.dataMap);
-        }
+        return Objects.equals(dataMap, studentDB.dataMap);
+    }
 
-        @Override
-        public int hashCode() {
-            return dataMap != null ? dataMap.hashCode() : 0;
-        }
+    @Override
+    public int hashCode() {
+        return dataMap != null ? dataMap.hashCode() : 0;
+    }
 
-        public Student[] getAllStudents(){
+    public Student[] getAllStudents(){
             Collection<Student> dataList = dataMap.values();
-            Student[] database = dataList.toArray(new Student[0]);
+            Student[] database = dataList.toArray(new Student[dataMap.size()]);
             return database;
         }
 
@@ -80,5 +80,14 @@ public class StudentDB {
             for (int i = 0; i < database.length; i++) {
                 this.dataMap.put(database[i].getId(),database[i]);
             }
+        }
+
+        public void addStudent(Student student){
+            dataMap.put(student.getId(),student);
+        }
+
+        public void removeStudentByID(String studentID) throws NoSuchElementException{
+            Student student = findById(studentID);
+            dataMap.remove(student.getId());
         }
 }

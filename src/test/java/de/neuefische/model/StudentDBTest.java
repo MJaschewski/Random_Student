@@ -1,5 +1,6 @@
 package de.neuefische.model;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,23 +10,40 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDBTest {
     @Test
-    void findById_student_not_found(){
+    void removeStudentByID_no_such_student_throws_exception(){
         //given
         Student tim = new BiologyStudent("Tim","1001",true);
         Student paul = new BiologyStudent("Paul","1002",false);
         Student alex = new BiologyStudent("Alex", "1003",true);
         Student[] database = {tim,paul,alex};
         StudentDB databaseTest = new StudentDB(database);
-        int wrongID = 1015;
-        //when
+        String wrongID = "1015";
+        //When & Then
+        assertThrows(NoSuchElementException.class, () ->databaseTest.removeStudentByID(wrongID));
+    }
+
+    @Test
+    void findById_student_not_found_throws_exception(){
+        //given
+        Student tim = new BiologyStudent("Tim","1001",true);
+        Student paul = new BiologyStudent("Paul","1002",false);
+        Student alex = new BiologyStudent("Alex", "1003",true);
+        Student[] database = {tim,paul,alex};
+        StudentDB databaseTest = new StudentDB(database);
+        String wrongID = "1015";
+        //when - then
+        /*
         boolean actual = true;
         try{
-            Student expectionStudent = databaseTest.findById(wrongID);
-        } catch (NoSuchElementException notFound){
-            actual = false;
+            Student exceptionStudent = databaseTest.findById(wrongID);
+            Assertions.fail();
+            //fail();
+        } catch (NoSuchElementException e){
+            Assertions.assertTrue(true);
         }
-        //Then
-        assertFalse(actual);
+        */
+        //Alternative assertThrows with lambda arguments
+        Assertions.assertThrows(NoSuchElementException.class, () ->databaseTest.findById(wrongID));
     }
 
     @Test
@@ -36,11 +54,11 @@ class StudentDBTest {
         Student alex = new BiologyStudent("Alex", "1003",true);
         Student[] database = {tim,paul,alex};
         StudentDB databaseTest = new StudentDB(database);
-        int wrongID = 1002;
+        String rightID = "1002";
         //when
         boolean actual = true;
         try{
-            Student expectionStudent = databaseTest.findById(wrongID);
+            Student expectionStudent = databaseTest.findById(rightID);
         } catch (NoSuchElementException notFound){
             actual = false;
         }
@@ -48,90 +66,18 @@ class StudentDBTest {
         assertTrue(actual);
     }
 
-
-
-    /*
-    //Doesn't work. HashMap sorts Entries
     @Test
-    void toString_Test(){
-        //given
-        Student tim = new BiologyStudent("Tim",1001,true);
-        Student paul = new BiologyStudent("Paul",1002,false);
-        Student alex = new BiologyStudent("Alex", 1003,true);
-        Student[] database = {tim,paul,alex};
-        StudentDB databaseTest = new StudentDB(database);
-
-        //then
-        String actual = databaseTest.toString();
-
-        //
-        assertEquals( "StudentDB{database=[Student{name='Tim', id=1001}, Student{name='Paul', id=1002}, Student{name='Alex', id=1003}]}",actual);
-    }
-
-    @Test
-    void getAllStudents_ThreeStudents(){
+    void getAllStudents(){
         //Given
-        Student tim = new BiologyStudent("Tim",1001,true);
-        Student paul = new BiologyStudent("Paul",1002,false);
-        Student alex = new BiologyStudent("Alex", 1003,true);
-
-        Student[] database = {tim,paul,alex};
+        Student tim = new BiologyStudent("Tim","1001",true);
+        Student[] database = {tim};
         StudentDB databaseTest = new StudentDB(database);
 
         //When
         Student[] actual = databaseTest.getAllStudents();
 
-        //Then
-        assertArrayEquals(database,actual);
+        assertEquals(Arrays.toString(database),Arrays.toString(actual));
+
     }
-    */
-
-    /*
-    @Test
-    void getAllStudents_ThreeStudents_Shuffled(){
-        //Given
-        Student tim = new Student("Tim",1001);
-        Student paul = new Student("Paul",1002);
-        Student alex = new Student("Alex", 1003);
-
-        Student[] database = {tim,paul,alex};
-
-        Student[] databaseShuffle = {paul,alex,tim};
-        Arrays.sort(databaseShuffle);
-
-        StudentDB databaseTest = new StudentDB(database);
-
-        //When
-        Student[] actual = databaseTest.getAllStudents();
-
-        //Then
-        assertArrayEquals(databaseShuffle,actual);
-    }
-    */
-    /*
-    @Test
-    void getAllStudents_AllDifferent(){
-        //Given
-        Student tim = new Student("Tim",1001);
-        Student paul = new Student("Paul",1002);
-        Student alex = new Student("Alex", 1003);
-
-        Student dieter = new Student("Fritz",1004);
-        Student klaus = new Student("Klaus",1005);
-        Student bob = new Student("Bob",1006);
-
-        Student[] database = {tim,paul,alex};
-        StudentDB databaseTest = new StudentDB(database);
-        Student[] databaseAllDifferent = {klaus,bob,dieter};
-
-        //When
-        Student[] actual = databaseTest.getAllStudents();
-
-        //Then
-        for (int i = 0; i < actual.length - 1; i++) {
-            assertNotEquals(actual[i], databaseAllDifferent[i]);
-        }
-    }
-     */
 
 }
