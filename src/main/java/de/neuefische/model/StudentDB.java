@@ -1,12 +1,11 @@
 package de.neuefische.model;
 import java.lang.Math;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public class StudentDB {
     //Properties
-        private Student[] database;
+        private List<Student> dataList = new ArrayList<>();
     //Methods
 
         public Student randomStudent() {
@@ -15,40 +14,46 @@ public class StudentDB {
             //Import java.util.random
             // Random rng = new Random();
             // rng.nextInt(5); Int between 0 and 4
-            int max = this.database.length - 1;
+            Student[] database = dataList.toArray(new Student[0]);
+            int max = database.length - 1;
             int min = 0;
             int range = max - min + 1;
             int rand = (int)(Math.random() * range) + min;
-            return this.database[rand];
+            return database[rand];
         }
 
         @Override
         public String toString() {
             return "StudentDB{" +
-                    "database=" + Arrays.toString(database) +
+                    "dataList=" + dataList +
                     '}';
         }
 
         public Student[] getAllStudents(){
-                return database;
+            Student[] database = dataList.toArray(new Student[0]);
+            return database;
         }
 
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
+
             StudentDB studentDB = (StudentDB) o;
-            return Arrays.equals(getDatabase(), studentDB.getDatabase());
+
+            return dataList.equals(studentDB.dataList);
         }
 
         @Override
         public int hashCode() {
-            return Arrays.hashCode(getDatabase());
+            return dataList.hashCode();
         }
 
     //Constructor
         public StudentDB(Student[] database) {
-            this.database = database;
+            for (int i = 0; i < database.length; i++) {
+                this.dataList.add(database[i]);
+            }
         }
         public StudentDB() {
         }
@@ -56,11 +61,13 @@ public class StudentDB {
     //Getter & Setter
 
         public Student[] getDatabase() {
+            Student[] database = dataList.toArray(new Student[0]);
             return database;
         }
 
         public void setDatabase(Student[] database) {
-
-            this.database = database;
+            for (int i = 0; i < database.length; i++) {
+                this.dataList.add(database[i]);
+            }
         }
 }
