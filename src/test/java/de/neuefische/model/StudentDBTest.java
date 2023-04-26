@@ -7,13 +7,15 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDBTest {
+
     /*
+    //Doesn't work. HashMap sorts Entries
     @Test
     void toString_Test(){
         //given
-        Student tim = new Student("Tim",1001);
-        Student paul = new Student("Paul",1002);
-        Student alex = new Student("Alex", 1003);
+        Student tim = new BiologyStudent("Tim",1001,true);
+        Student paul = new BiologyStudent("Paul",1002,false);
+        Student alex = new BiologyStudent("Alex", 1003,true);
         Student[] database = {tim,paul,alex};
         StudentDB databaseTest = new StudentDB(database);
 
@@ -27,9 +29,9 @@ class StudentDBTest {
     @Test
     void getAllStudents_ThreeStudents(){
         //Given
-        Student tim = new Student("Tim",1001);
-        Student paul = new Student("Paul",1002);
-        Student alex = new Student("Alex", 1003);
+        Student tim = new BiologyStudent("Tim",1001,true);
+        Student paul = new BiologyStudent("Paul",1002,false);
+        Student alex = new BiologyStudent("Alex", 1003,true);
 
         Student[] database = {tim,paul,alex};
         StudentDB databaseTest = new StudentDB(database);
@@ -41,6 +43,7 @@ class StudentDBTest {
         assertArrayEquals(database,actual);
     }
     */
+
     /*
     @Test
     void getAllStudents_ThreeStudents_Shuffled(){
