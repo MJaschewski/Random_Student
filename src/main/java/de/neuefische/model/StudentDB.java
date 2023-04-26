@@ -5,7 +5,7 @@ import java.util.*;
 
 public class StudentDB {
     //Properties
-        private List<Student> dataList = new ArrayList<>();
+        private Map<String,Student> dataMap = new HashMap<>();
     //Methods
 
         public Student randomStudent() {
@@ -14,6 +14,7 @@ public class StudentDB {
             //Import java.util.random
             // Random rng = new Random();
             // rng.nextInt(5); Int between 0 and 4
+            Collection<Student> dataList = dataMap.values();
             Student[] database = dataList.toArray(new Student[0]);
             int max = database.length - 1;
             int min = 0;
@@ -25,13 +26,8 @@ public class StudentDB {
         @Override
         public String toString() {
             return "StudentDB{" +
-                    "dataList=" + dataList +
+                    "dataMap=" + dataMap +
                     '}';
-        }
-
-        public Student[] getAllStudents(){
-            Student[] database = dataList.toArray(new Student[0]);
-            return database;
         }
 
         @Override
@@ -41,18 +37,24 @@ public class StudentDB {
 
             StudentDB studentDB = (StudentDB) o;
 
-            return dataList.equals(studentDB.dataList);
+            return Objects.equals(dataMap, studentDB.dataMap);
         }
 
         @Override
         public int hashCode() {
-            return dataList.hashCode();
+            return dataMap != null ? dataMap.hashCode() : 0;
+        }
+
+        public Student[] getAllStudents(){
+            Collection<Student> dataList = dataMap.values();
+            Student[] database = dataList.toArray(new Student[0]);
+            return database;
         }
 
     //Constructor
         public StudentDB(Student[] database) {
             for (int i = 0; i < database.length; i++) {
-                this.dataList.add(database[i]);
+                this.dataMap.put(database[i].getName(),database[i]);
             }
         }
         public StudentDB() {
@@ -61,13 +63,14 @@ public class StudentDB {
     //Getter & Setter
 
         public Student[] getDatabase() {
+            Collection<Student> dataList = dataMap.values();
             Student[] database = dataList.toArray(new Student[0]);
             return database;
         }
 
         public void setDatabase(Student[] database) {
             for (int i = 0; i < database.length; i++) {
-                this.dataList.add(database[i]);
+                this.dataMap.put(database[i].getName(),database[i]);
             }
         }
 }
