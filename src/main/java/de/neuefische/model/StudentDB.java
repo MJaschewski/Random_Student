@@ -7,6 +7,14 @@ public class StudentDB {
     //Properties
         private Map<String,Student> dataMap = new HashMap<>();
     //Methods
+        public Student findById(int id) throws NoSuchElementException{
+            Student foundStudent = this.dataMap.get(id);
+            if (foundStudent == null){
+                System.out.println("No student with this ID found");
+                throw new NoSuchElementException();
+            }
+            return foundStudent;
+        }
 
         public Student randomStudent() {
             //"This" not needed. Explicit call
@@ -54,7 +62,7 @@ public class StudentDB {
     //Constructor
         public StudentDB(Student[] database) {
             for (int i = 0; i < database.length; i++) {
-                this.dataMap.put(database[i].getName(),database[i]);
+                this.dataMap.put(database[i].getId(),database[i]);
             }
         }
         public StudentDB() {
@@ -70,7 +78,7 @@ public class StudentDB {
 
         public void setDatabase(Student[] database) {
             for (int i = 0; i < database.length; i++) {
-                this.dataMap.put(database[i].getName(),database[i]);
+                this.dataMap.put(database[i].getId(),database[i]);
             }
         }
 }

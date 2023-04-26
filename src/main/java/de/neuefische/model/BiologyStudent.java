@@ -21,7 +21,7 @@ public class BiologyStudent extends Student implements Citizen{
         return 0;
     }
 
-    public BiologyStudent(String name, int id, boolean learnBook) {
+    public BiologyStudent(String name, String id, boolean learnBook) {
         super(name, id);
         this.learnBook = learnBook;
     }

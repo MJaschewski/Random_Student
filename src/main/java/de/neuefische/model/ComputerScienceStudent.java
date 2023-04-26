@@ -12,7 +12,7 @@ public class ComputerScienceStudent extends Student implements Citizen{
     public ComputerScienceStudent() {
     }
 
-    public ComputerScienceStudent(String name, int id, int getProgramingIQ) {
+    public ComputerScienceStudent(String name, String id, int getProgramingIQ) {
         super(name, id);
         this.getProgramingIQ = getProgramingIQ;
     }

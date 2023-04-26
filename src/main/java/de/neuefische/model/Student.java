@@ -5,7 +5,7 @@ import java.util.Objects;
 public abstract class Student {
     //properties
         private String name;
-        private int id;
+        private String id;
     //Methods
         public abstract void setIQValue(int IQValue);
         public abstract int getIQValue();
@@ -35,7 +35,7 @@ public abstract class Student {
         public Student() {
         }
 
-        public Student(String name, int id) {
+        public Student(String name, String id) {
             this.name = name;
             this.id = id;
         }
@@ -48,11 +48,11 @@ public abstract class Student {
             this.name = name;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 }

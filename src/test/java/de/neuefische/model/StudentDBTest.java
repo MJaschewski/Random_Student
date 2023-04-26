@@ -3,10 +3,52 @@ package de.neuefische.model;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDBTest {
+    @Test
+    void findById_student_not_found(){
+        //given
+        Student tim = new BiologyStudent("Tim","1001",true);
+        Student paul = new BiologyStudent("Paul","1002",false);
+        Student alex = new BiologyStudent("Alex", "1003",true);
+        Student[] database = {tim,paul,alex};
+        StudentDB databaseTest = new StudentDB(database);
+        int wrongID = 1015;
+        //when
+        boolean actual = true;
+        try{
+            Student expectionStudent = databaseTest.findById(wrongID);
+        } catch (NoSuchElementException notFound){
+            actual = false;
+        }
+        //Then
+        assertFalse(actual);
+    }
+
+    @Test
+    void findById_student_found(){
+        //given
+        Student tim = new BiologyStudent("Tim","1001",true);
+        Student paul = new BiologyStudent("Paul","1002",false);
+        Student alex = new BiologyStudent("Alex", "1003",true);
+        Student[] database = {tim,paul,alex};
+        StudentDB databaseTest = new StudentDB(database);
+        int wrongID = 1002;
+        //when
+        boolean actual = true;
+        try{
+            Student expectionStudent = databaseTest.findById(wrongID);
+        } catch (NoSuchElementException notFound){
+            actual = false;
+        }
+        //Then
+        assertTrue(actual);
+    }
+
+
 
     /*
     //Doesn't work. HashMap sorts Entries
