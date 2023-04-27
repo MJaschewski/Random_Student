@@ -76,7 +76,7 @@ class StudentDBTest {
         //When
         Student[] actual = databaseTest.getAllStudents();
 
-        assertEquals(Arrays.toString(database),Arrays.toString(actual));
+        assertArrayEquals(database,actual);
 
     }
 
